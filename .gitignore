@@ -1,0 +1,6 @@
+\*.log
+\*.o
+/data_in
+/data_out
+/bin
+find ../../cqpgsim/data_in/thu_data/ -maxdepth 1 -type f ! -name "*.gz" | parallel --eta -j4 cp {} ./

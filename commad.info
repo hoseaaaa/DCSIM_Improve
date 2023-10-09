@@ -1,0 +1,1 @@
+./cqpgsim  ../data_in/ibm_data/ibmpg1/ibmpg1.spice ibmpg1_cq.out ../data_in/ibm_data/ibmpg1/ibmpg1.solution  
