@@ -39,25 +39,25 @@ compress:
 
 run-1:
 	cd bin; \
-	./cqpgsim ${IBM_DATA_HOME}/ibmpg1.spice ${IBM_DATA_OUT}/ibmpg1.cqpg ${IBM_DATA_HOME}/ibmpg1.solution >>> ${IBM_DATA_OUT}/ibmpg1.info
+	./cqpgsim ${IBM_DATA_HOME}/ibmpg1.spice ${IBM_DATA_OUT}/ibmpg1.cqpg ${IBM_DATA_HOME}/ibmpg1.solution > ${IBM_DATA_OUT}/ibmpg1.info
 
 run-2:
 	cd bin; \
-	./cqpgsim ${IBM_DATA_HOME}/ibmpg2.spice ${IBM_DATA_OUT}/ibmpg2.cqpg ${IBM_DATA_HOME}/ibmpg2.solution >>> ${IBM_DATA_OUT}/ibmpg2.info
+	./cqpgsim ${IBM_DATA_HOME}/ibmpg2.spice ${IBM_DATA_OUT}/ibmpg2.cqpg ${IBM_DATA_HOME}/ibmpg2.solution > ${IBM_DATA_OUT}/ibmpg2.info
 
 run-3:
 	cd bin; \
-	./cqpgsim ${IBM_DATA_HOME}/ibmpg3.spice ${IBM_DATA_OUT}/ibmpg3.cqpg ${IBM_DATA_HOME}/ibmpg3.solution >>> ${IBM_DATA_OUT}/ibmpg3.info
+	./cqpgsim ${IBM_DATA_HOME}/ibmpg3.spice ${IBM_DATA_OUT}/ibmpg3.cqpg ${IBM_DATA_HOME}/ibmpg3.solution > ${IBM_DATA_OUT}/ibmpg3.info
 
 run-4:
 	cd bin; \
-	./cqpgsim ${IBM_DATA_HOME}/ibmpg4.spice ${IBM_DATA_OUT}/ibmpg4.cqpg ${IBM_DATA_HOME}/ibmpg4.solution >>> ${IBM_DATA_OUT}/ibmpg4.info
+	./cqpgsim ${IBM_DATA_HOME}/ibmpg4.spice ${IBM_DATA_OUT}/ibmpg4.cqpg ${IBM_DATA_HOME}/ibmpg4.solution > ${IBM_DATA_OUT}/ibmpg4.info
 
 run-5:
 	cd bin; \
-	./cqpgsim ${IBM_DATA_HOME}/ibmpg5.spice ${IBM_DATA_OUT}/ibmpg5.cqpg ${IBM_DATA_HOME}/ibmpg5.solution >>> ${IBM_DATA_OUT}/ibmpg5.info
+	./cqpgsim ${IBM_DATA_HOME}/ibmpg5.spice ${IBM_DATA_OUT}/ibmpg5.cqpg ${IBM_DATA_HOME}/ibmpg5.solution > ${IBM_DATA_OUT}/ibmpg5.info
 
 run-6:
 	cd bin; \
-	./cqpgsim ${IBM_DATA_HOME}/ibmpg6.spice ${IBM_DATA_OUT}/ibmpg6.cqpg ${IBM_DATA_HOME}/ibmpg6.solution >>> ${IBM_DATA_OUT}/ibmpg6.info
+	./cqpgsim ${IBM_DATA_HOME}/ibmpg6.spice ${IBM_DATA_OUT}/ibmpg6.cqpg ${IBM_DATA_HOME}/ibmpg6.solution > ${IBM_DATA_OUT}/ibmpg6.info
 
