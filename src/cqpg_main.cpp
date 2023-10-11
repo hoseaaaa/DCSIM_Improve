@@ -1,6 +1,6 @@
 #include <iostream>
 #include <iomanip>
-
+#include <chrono>
 #include "../inc/cqpg.h"
 #include "../inc/cqpg_timer.h"
 #include "../inc/cqpg_memory.h"
@@ -32,7 +32,7 @@ int main (int argc, char *argv[]) {
     bool res;
 
     cqpg *mycqpg = new cqpg;
-
+auto start = std::chrono::high_resolution_clock::now();
     // 1. 读取文件，解析网表，构建矩阵
     res = cqpg_deck_parse(f_deck, mycqpg);
     if (!res) {
@@ -43,9 +43,13 @@ int main (int argc, char *argv[]) {
         CalMem("1). 解析网表");
         cout << endl;
     }
+auto end = std::chrono::high_resolution_clock::now();
+auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
+std::cout << "======解析网表所用的时间: ======" << duration/1000.0000 << " s " << std::endl;
 
     // 2. DC仿真
     if (!mycqpg->sim_type) {
+        start = std::chrono::high_resolution_clock::now();
         res = cqpg_do_DC(mycqpg);
         if (!res) {
             cout << "DC仿真错误!" << endl;
@@ -55,6 +59,9 @@ int main (int argc, char *argv[]) {
             CalMem("2). DC仿真");
             cout << endl;
         }
+        end = std::chrono::high_resolution_clock::now();
+        duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
+        std::cout << "======DC仿真所用的时间: ======" << duration/1000.0000 << " s " << std::endl;
     }
     // 2. TR仿真
     else {
@@ -70,6 +77,7 @@ int main (int argc, char *argv[]) {
     }
 
     // 3. 输出结果
+    start = std::chrono::high_resolution_clock::now();
     res = cqpg_print(mycqpg, ofile);
     if (!res) {
         cout << "输出结果错误!" << endl;
@@ -79,9 +87,13 @@ int main (int argc, char *argv[]) {
         CalMem("3). 输出结果");
         cout << endl;
     }
+    end = std::chrono::high_resolution_clock::now();
+    duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
+    std::cout << "=====输出结果所用的时间: ======" << duration/1000.0000 << " s " << std::endl;
 
 #ifdef DEBUG
     // 4. 验证结果
+    start = std::chrono::high_resolution_clock::now();
     res = cqpg_verify(ofile, f_solution);
     if (!res) {
         cout << "验证结果错误!" << endl;
@@ -91,7 +103,17 @@ int main (int argc, char *argv[]) {
         CalMem("4). 验证结果");
         cout << endl;
     }
+    end = std::chrono::high_resolution_clock::now();
+    duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
+    std::cout << "======验证结果所用的时间: ======" << duration/1000.0000 << " s " << std::endl;
+
 #endif
 
     return 0;
 }
+
+
+// auto start = std::chrono::high_resolution_clock::now();
+// auto end = std::chrono::high_resolution_clock::now();
+// auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
+// std::cout << "======解析网表所用的时间: ======" << duration/1000.0000 << " s " << std::endl;
