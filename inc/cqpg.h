@@ -80,4 +80,7 @@ bool cqpg_verify (
     string &f_solution
 );
 
+bool y_para_output(cqpg  *&mycqpg, string Gfile,string Utfile); 
+
+
 #endif
