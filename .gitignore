@@ -1,2 +1,5 @@
 \*.log
 /data_in
+.o
+.so
+/bin/*
