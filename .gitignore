@@ -1,5 +1,6 @@
 \*.log
 /data_in
-.o
-.so
+!libcktso.so
+*.o
+*.so
 /bin/*
