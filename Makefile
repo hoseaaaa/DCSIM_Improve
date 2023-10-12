@@ -1,10 +1,10 @@
 CC = g++
 CFLAGS = -std=c++11 -c -Wall -Wextra -g -O0 -D DEBUG
 LFLAGS = -std=c++11 -Wall -Wextra -g -O0
-DCSIM=${DCSIM_HOME}
-IBM_DATA_HOME = ${DCSIM}/data_in/ibm_data
-IBM_DATA_OUT  = ${DCSIM}/data_out/ibm_data_cq
-THU_DATA_HOME = ${DCSIM}/data_in/thu_data
+DCSIM := $(shell echo $$DCSIM_HOME)
+IBM_DATA_HOME := $(DCSIM)/data_in/ibm_data
+IBM_DATA_OUT  := $(DCSIM)/data_out/ibm_data_cq
+THU_DATA_HOME := $(DCSIM)/data_in/thu_data
 INC = -I./inc
 LIB = -L./lib -lcqpg -lcktso # 库的顺序很重要 cqpg 调用 cktso, 所以 cqpg 在前
 

@@ -2,19 +2,19 @@ A tool for large-scale power grid simulation, including DC and transient simulat
 
 Env Set:
 
-    export DCSIM_PATH=$HOME/DCSIM_Improve
-    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:../lib
+    export DCSIM_HOME$HOME/DCSIM_Improve
+    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:DCSIM_HOME/lib
 
 Build:
-    mkdir bin; 
+    mkdir bin;
     make;
 
 Run (release):
-    cd bin; 
+    cd bin;
     ./cqpgsim netlist-file(IBM format) solution-file;
 
 Run (debug):
-    cd bin; 
+    cd bin;
     ./cqpgsim netlist-file(IBM format) solution-file ref-solution-file;
 
 ...
