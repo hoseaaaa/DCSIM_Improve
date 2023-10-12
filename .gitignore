@@ -1,6 +1,7 @@
 \*.log
-/data_in
+data_in/*
+data_out/*
 !libcktso.so
 *.o
 *.so
-/bin/*
+bin/*

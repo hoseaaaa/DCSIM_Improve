@@ -2,8 +2,8 @@ A tool for large-scale power grid simulation, including DC and transient simulat
 
 Env Set:
 
-    export DCSIM_HOME$HOME/DCSIM_Improve
-    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:DCSIM_HOME/lib
+    export DCSIM_HOME=$HOME/DCSIM_Improve
+    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$DCSIM_HOME/lib
 
 Build:
     mkdir bin;
