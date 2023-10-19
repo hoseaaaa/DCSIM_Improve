@@ -126,7 +126,7 @@ bool test( int n, const int *colptr, const int *rowidx, const double *value) {
 }
 
 // 处理并联电阻情况，重复的元素直接相加(电导并联)
-void handling_parallel_resistors (int32 n, int32 *&ap, int32 *&ai, f64 *&ax) {
+void handling_parallel_resistors (int32 n, int32 *&ap, int32 *&ai, f64 *&ax , int32* y_nnz ) {
 
     int32 *ap_new = new int32[n+1];
     ap_new[0] = 0;
@@ -182,7 +182,8 @@ void handling_parallel_resistors (int32 n, int32 *&ap, int32 *&ai, f64 *&ax) {
                 }
             }
         }
-
+        cout << "ai_new--->nnz size "<<  nnz << endl ;
+        *y_nnz = nnz ;
         delete [] ap; ap = ap_new;
         delete [] ai; ai = ai_new;
         delete [] ax; ax = ax_new;
@@ -490,7 +491,8 @@ bool cqpg_deck_parse_dc (
     delete [] G_diag; G_diag = nullptr;
 
     // 5 从矩阵角度处理电阻并联情况
-    handling_parallel_resistors(n, G_rowptr, G_colidx, G_value);
+    int y_nnz ; 
+    handling_parallel_resistors(n, G_rowptr, G_colidx, G_value, &y_nnz );
 
 #ifdef DEBUG
 
@@ -616,7 +618,8 @@ bool cqpg_deck_parse_dc (
     // 存储 G 矩阵 和 所有节点地址
     matrix_dc *spmtx_dc = new matrix_dc;
     spmtx_dc->n         = n;
-    spmtx_dc->G_nnz     = G_nnz;
+    // spmtx_dc->G_nnz     = G_nnz;
+    spmtx_dc->G_nnz     = y_nnz;
     spmtx_dc->G_rowptr  = G_rowptr;
     spmtx_dc->G_colidx  = G_colidx;
     spmtx_dc->G_value   = G_value;

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <cstring>
 #include "../inc/cqpg.h"
 using namespace std ; 
 
@@ -17,32 +18,35 @@ bool y_para_output(cqpg  *&mycqpg, string Gfile,string Utfile) {
         return false;
     }
     //维度 nxn
-    outputFile << "(" << mycqpg->spmtx_dc->n << ","  << mycqpg->spmtx_dc->n << ")   "; 
-    outputFile << mycqpg->spmtx_dc->G_nnz << endl ; 
+
+    int n = mycqpg->spmtx_dc->n ;
+    int G_nnz = mycqpg->spmtx_dc->G_nnz ;
+
+    outputFile << "(" <<n << ","  << n << ")   "; 
+    outputFile << G_nnz << endl ; 
     
     // 输出变量的值到文件
     int32   *G_rowptr    = mycqpg->spmtx_dc->G_rowptr;
     int32   *G_colidx    = mycqpg->spmtx_dc->G_colidx;
     f64     *G_value     = mycqpg->spmtx_dc->G_value ;
 
-    // outputFile << "G_rowptr: ";
-    int size_of_G_row = mycqpg->spmtx_dc->n ;
-    int size_of_G_colidx = mycqpg->spmtx_dc->G_nnz ;
-    int size_of_G_value = mycqpg->spmtx_dc->G_nnz ;
-
-    for (int i = 0;  i <= size_of_G_row ; ++i) {
+    //------------------------------------------------
+    // output G_rowptr ----------------------------------
+    //----------------------------------------------------
+    outputFile << "G_rowptr: ";
+    for (int i = 0;  i <= n ; ++i) {
         outputFile << G_rowptr[i] << " ";
     }
     outputFile << std::endl;
 
-    // outputFile << "G_colidx: ";
-    for (int i = 0; i < size_of_G_colidx; ++i) {
+    outputFile << "G_colidx: ";
+    for (int i = 0; i < G_nnz; ++i) {
         outputFile << G_colidx[i] << " ";
     }
+    cout << mycqpg->spmtx_dc->G_colidx[G_nnz] <<endl ;
     outputFile << std::endl;
-
-    // outputFile << "G_value: ";
-    for (int i = 0; i < size_of_G_value; ++i) {
+    outputFile << "G_value: ";
+    for (int i = 0; i < G_nnz; ++i) {
         outputFile << G_value[i] << " ";
     }
     outputFile << std::endl;
@@ -61,4 +65,24 @@ bool y_para_output(cqpg  *&mycqpg, string Gfile,string Utfile) {
     outputFile.close();
 
     return true;
+}
+
+//内存过大，分块处理
+void saveToBatchedFile(int32 *data, int size, const char *filename, int batchSize) {
+    FILE *file = fopen(filename, "w");
+    if (file == NULL) {
+        perror("Error opening file");
+        return;
+    }
+
+    for (int i = 0; i < size; i += batchSize) {
+        int remaining = size - i;
+        int currentBatchSize = (remaining < batchSize) ? remaining : batchSize;
+        for (int j = 0; j < currentBatchSize; ++j) {
+            fprintf(file, "%d ", data[i + j]);
+        }
+        fprintf(file, "\n");
+    }
+
+    fclose(file);
 }

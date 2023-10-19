@@ -16,15 +16,15 @@ int main (int argc, char *argv[]) {
         std::cout << "输入格式：./cqpgsim  .spice网表文件 .cqpg输出文件 .solution标准解文件 构建G矩阵文件 构建ut矩阵文件" << std::endl;
         return -1;
     }
-    string f_deck       = argv[1];
-    string ofile        = argv[2];
-    string f_solution   = argv[3];
-    string gfile        = argv[4];
-    string utfile       = argv[5];
+    string f_deck       = argv[1];  // spice 网表
+    string ofile        = argv[2];  // cqpg  输出文件，各个节点计算结果
+    string f_solution   = argv[3];  // .soltion  标准解文件
+    string gfile        = argv[4];  // 输出构建的G矩阵文件
+    string utfile       = argv[5];  // 输出构建的ut文件
 #else
-    if (argc != 3) {
+    if (argc != 6) {
         std::cout << "输入格式错误!" << std::endl;
-        std::cout << "输入格式：./cqpgsim 网表文件 输出文件" << std::endl;
+        std::cout << "输入格式：./cqpgsim  .spice网表文件 .cqpg输出文件 .solution标准解文件 构建G矩阵文件 构建ut矩阵文件" << std::endl;
         return -1;
     }
     string f_deck       = argv[1];
@@ -50,9 +50,9 @@ auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - star
 std::cout << "======解析网表所用的时间: ======" << duration/1000.0000 << " s " << std::endl;
    
     //1.5 输出构建矩阵值，后续传递给AMGCL计算
-    if (1){
-        y_para_output(mycqpg ,gfile,utfile ) ;
-    }
+    #ifdef DEBUG        
+    y_para_output(mycqpg ,gfile,utfile ) ;
+    #endif
     // 2. DC仿真
     if (!mycqpg->sim_type) {
         start = std::chrono::high_resolution_clock::now();
