@@ -33,19 +33,19 @@ bool y_para_output(cqpg  *&mycqpg, string Gfile,string Utfile) {
     //------------------------------------------------
     // output G_rowptr ----------------------------------
     //----------------------------------------------------
-    outputFile << "G_rowptr: ";
+    // outputFile << "G_rowptr: ";
     for (int i = 0;  i <= n ; ++i) {
         outputFile << G_rowptr[i] << " ";
     }
     outputFile << std::endl;
 
-    outputFile << "G_colidx: ";
+    // outputFile << "G_colidx: ";
     for (int i = 0; i < G_nnz; ++i) {
         outputFile << G_colidx[i] << " ";
     }
     cout << mycqpg->spmtx_dc->G_colidx[G_nnz] <<endl ;
     outputFile << std::endl;
-    outputFile << "G_value: ";
+    // outputFile << "G_value: ";
     for (int i = 0; i < G_nnz; ++i) {
         outputFile << G_value[i] << " ";
     }
