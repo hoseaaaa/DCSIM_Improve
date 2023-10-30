@@ -22,13 +22,15 @@ int main (int argc, char *argv[]) {
     string gfile        = argv[4];  // 输出构建的G矩阵文件
     string utfile       = argv[5];  // 输出构建的ut文件
 #else
-    if (argc != 6) {
+    if (argc != 5) {
         std::cout << "输入格式错误!" << std::endl;
         std::cout << "输入格式：./cqpgsim  .spice网表文件 .cqpg输出文件 .solution标准解文件 构建G矩阵文件 构建ut矩阵文件" << std::endl;
         return -1;
     }
-    string f_deck       = argv[1];
-    string ofile        = argv[2];
+    string f_deck       = argv[1];  // spice 网表
+    string ofile        = argv[2];  // cqpg  输出文件，各个节点计算结果
+    string gfile        = argv[3];  // 输出构建的G矩阵文件
+    string utfile       = argv[4];  // 输出构建的ut文件
 #endif
 
     bool res;
