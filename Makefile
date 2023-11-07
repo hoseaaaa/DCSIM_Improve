@@ -25,24 +25,16 @@ clean:
 	(cd src; rm -f *.mtx)
 
 ibm-run:
-	make ibm-1 ; 
-	make ibm-2 ; 
-	make ibm-3 ; 
-	make ibm-4 ; 
-	make ibm-5 ; 
-	make ibm-6 ; 
+	@for i in {1..6}; do \
+		echo "Running ibm-$$i..."; \
+		make ibm-$$i || true; \
+	done
 	
 thu-run:
-	make thu-1 ; 
-	make thu-2 ; 
-	make thu-3 ; 
-	make thu-4 ; 
-	make thu-5 ; 
-	make thu-6 ; 
-	make thu-7 ; 
-	make thu-8 ; 
-	make thu-9 ; 
-	make thu-10; 
+	@for i in {1..10}; do \
+		echo "Running thu-$$i..."; \
+		make thu-$$i || true; \
+	done 
 
 compress:
 	make clean; \
