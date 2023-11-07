@@ -9,7 +9,8 @@
 
 bool cqpg_print (
     cqpg  *&mycqpg,
-    string &ofile
+    string &ofile,
+    string &ofile_x
 ) {
     
     if (!mycqpg->sim_type) { // DC
@@ -31,7 +32,12 @@ bool cqpg_print (
             }
         }
         out.close();
-
+        ofstream outx(ofile_x);
+        for (int i = 0; i < mycqpg->spmtx_dc->n; ++i) {
+            outx << scientific << setprecision(5);
+                outx << xt[i] << endl;
+        }
+        outx.close();
         // 2. 删除内存
         delete [] xt; xt = nullptr;
         for (int i = 0; i < nodes_nums; ++i) {

@@ -72,7 +72,8 @@ bool cqpg_do_TR (
 
 bool cqpg_print (
     cqpg  *&mycqpg,
-    string &ofile
+    string &ofile,
+    string &ofile_x
 );
 
 bool cqpg_verify (

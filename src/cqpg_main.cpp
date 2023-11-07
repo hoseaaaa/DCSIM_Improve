@@ -11,7 +11,7 @@ int main (int argc, char *argv[]) {
     cout << endl;
 
 #ifdef DEBUG
-    if (argc != 6) {
+    if (argc != 7) {
         std::cout << "输入格式错误!" << std::endl;
         std::cout << "输入格式：./cqpgsim  .spice网表文件 .cqpg输出文件 .solution标准解文件 构建G矩阵文件 构建ut矩阵文件" << std::endl;
         return -1;
@@ -21,6 +21,7 @@ int main (int argc, char *argv[]) {
     string f_solution   = argv[3];  // .soltion  标准解文件
     string gfile        = argv[4];  // 输出构建的G矩阵文件
     string utfile       = argv[5];  // 输出构建的ut文件
+    string ofile_x      = argv[6];  // 输出x矩阵参数
 #else
     if (argc != 5) {
         std::cout << "输入格式错误!" << std::endl;
@@ -86,7 +87,8 @@ std::cout << "======解析网表所用的时间: ======" << duration/1000.0000 <
 
     // 3. 输出结果
     start = std::chrono::high_resolution_clock::now();
-    res = cqpg_print(mycqpg, ofile);
+
+    res = cqpg_print(mycqpg, ofile,ofile_x);
     if (!res) {
         cout << "输出结果错误!" << endl;
         return -1;
