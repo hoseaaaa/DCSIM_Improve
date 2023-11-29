@@ -241,6 +241,10 @@ bool cqpg_deck_parse_dc (
         string node1_name, node2_name;
         f64 val;
         sstr >> node1_name >> node2_name >> val;
+        // if ( val <= 1e-6 && val!=0) {
+        //     continue;
+        // }
+        // 过滤小电阻
         node *node1 = netlist[node1_name];
         node *node2 = netlist[node2_name];
         uint8 link_ptr1 = node1->link_nums++;
@@ -619,7 +623,8 @@ bool cqpg_deck_parse_dc (
     matrix_dc *spmtx_dc = new matrix_dc;
     spmtx_dc->n         = n;
     // spmtx_dc->G_nnz     = G_nnz;
-    spmtx_dc->G_nnz     = y_nnz;
+    // spmtx_dc->G_nnz     = y_nnz;
+    spmtx_dc->G_nnz     = G_rowptr[n];
     spmtx_dc->G_rowptr  = G_rowptr;
     spmtx_dc->G_colidx  = G_colidx;
     spmtx_dc->G_value   = G_value;
@@ -676,7 +681,16 @@ bool cqpg_deck_parse (
             }
         }
         string node1_name, node2_name;
-        sstr >> node1_name >> node2_name;
+        f64 val ;
+        sstr >> node1_name >> node2_name >> val ;
+        // 过滤小电阻
+        // cout << node1_name <<endl ;
+        // cout << node2_name <<endl ;
+        // cout << val << endl ;
+        // if ( val <= 1e-6 && val!=0) {
+        //     continue;
+        // }
+        
         if (netlist.find(node1_name) == netlist.end()) {
             node *node1 = new node();
             node1->name = node1_name;

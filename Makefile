@@ -36,10 +36,16 @@ ibm-run:
 	make ibm-5 || true;
 	make ibm-6 || true;
 thu-run:
-	@for i in {1..10}; do \
-		echo "Running thu-$$i..."; \
-		make thu-$$i || true; \
-	done 
+	make thu-1  || true;
+	make thu-2  || true;
+	make thu-3  || true;
+	make thu-4  || true;
+	make thu-5  || true;
+	make thu-6  || true;
+	make thu-7  || true;
+	make thu-8  || true;
+	make thu-9  || true;
+	make thu-10 || true;
 
 compress:
 	make clean; \
