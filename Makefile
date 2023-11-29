@@ -61,7 +61,7 @@ compress:
 
 $(IBM-TARGETS):
 	cd bin && \
-	./cqpgsim $(IBM_DATA_HOME)/$@.spice $(IBM_DATA_OUT)/$@.cqpg $(IBM_DATA_HOME)/$@.solution $(IBM_DATA_OUT)/$@/thupg.G.txt $(IBM_DATA_OUT)/$@/thupg.u.txt $(IBM_DATA_OUT)/$@/thupg.x.txt > $(IBM_DATA_OUT)/$@/$@.info
+	./cqpgsim $(IBM_DATA_HOME)/$@.spice $(IBM_DATA_OUT)/$@.cqpg $(IBM_DATA_HOME)/$@.solution $(IBM_DATA_OUT)/$@/ibmpg.G.txt $(IBM_DATA_OUT)/$@/ibmpg.u.txt $(IBM_DATA_OUT)/$@/ibmpg.x.txt > $(IBM_DATA_OUT)/$@/$@.info
 
 # thu's solution 没有用处，此处仅是方便输入，以免在输入格式判定时失败
 $(THU-TARGETS):
