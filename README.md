@@ -1,4 +1,7 @@
 A tool for large-scale power grid simulation, including DC and transient simulation. It will incorporate advanced technologies like distributed computing, hardware-software co-design, and approximate computing in the future.
+Data:
+    ibm powergrid 
+    thu powergrid 
 
 Env Set:
 
@@ -6,17 +9,14 @@ Env Set:
     export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$DCSIM_HOME/lib
 
 Build:
-    mkdir bin;
-    make;
-
-Run (release):
-    cd bin;
-    ./cqpgsim netlist-file(IBM format) solution-file;
-
+    make all 
+    
 Run (debug):
-    cd bin;
-    ./cqpgsim netlist-file(IBM format) solution-file ref-solution-file;
-
+    make ibmpg1
+    ... 
+    make thupg1
+    ...
+    
 ...
 
 This project is developed by Qian Chen (E-mail: chenqian0103@seu.edu.cn). The used sparse linear solver is developed by Xiaoming Chen.

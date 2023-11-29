@@ -54,11 +54,6 @@ thu-run:
 #         make thu-$$i || true; \
 #     done
 
-compress:
-	make clean; \
-	cd ..; \
-	tar -zcvf cqpgsim.tar.gz cqpgsim/
-
 $(IBM-TARGETS):
 	cd bin && \
 	./cqpgsim $(IBM_DATA_HOME)/$@.spice $(IBM_DATA_OUT)/$@.cqpg $(IBM_DATA_HOME)/$@.solution $(IBM_DATA_OUT)/$@/thupg.G.txt $(IBM_DATA_OUT)/$@/thupg.u.txt $(IBM_DATA_OUT)/$@/thupg.x.txt > $(IBM_DATA_OUT)/$@/$@.info

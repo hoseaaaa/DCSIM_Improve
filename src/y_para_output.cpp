@@ -66,23 +66,3 @@ bool y_para_output(cqpg  *&mycqpg, string Gfile,string Utfile) {
 
     return true;
 }
-
-//内存过大，分块处理
-void saveToBatchedFile(int32 *data, int size, const char *filename, int batchSize) {
-    FILE *file = fopen(filename, "w");
-    if (file == NULL) {
-        perror("Error opening file");
-        return;
-    }
-
-    for (int i = 0; i < size; i += batchSize) {
-        int remaining = size - i;
-        int currentBatchSize = (remaining < batchSize) ? remaining : batchSize;
-        for (int j = 0; j < currentBatchSize; ++j) {
-            fprintf(file, "%d ", data[i + j]);
-        }
-        fprintf(file, "\n");
-    }
-
-    fclose(file);
-}

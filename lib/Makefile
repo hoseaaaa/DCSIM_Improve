@@ -7,16 +7,10 @@ LIB = -lcktso
 
 all: libcqpg.so
 
-libcqpg.so: cqpg_parse.o cqpg_dc.o cqpg_tran.o cqpg_print.o y_para_output.o
+libcqpg.so: cqpg_parse.o  y_para_output.o
 	$(CC) $(LFLAGS) $^ -o $@ 
 
 cqpg_parse.o: ../src/cqpg_parse.cpp
-	$(CC) $(CFLAGS) $< -o $@ $(INC)
-cqpg_dc.o: ../src/cqpg_dc.cpp
-	$(CC) $(CFLAGS) $< -o $@ $(INC) $(LIB)
-cqpg_tran.o: ../src/cqpg_tran.cpp
-	$(CC) $(CFLAGS) $< -o $@ $(INC) $(LIB)
-cqpg_print.o: ../src/cqpg_print.cpp
 	$(CC) $(CFLAGS) $< -o $@ $(INC)
 y_para_output.o: ../src/y_para_output.cpp
 	$(CC) $(CFLAGS) $< -o $@ $(INC)
