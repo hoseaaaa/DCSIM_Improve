@@ -19,7 +19,7 @@ Run (debug):
     
 ...
 
-This project is developed by Qian Chen (E-mail: chenqian0103@seu.edu.cn). The used sparse linear solver is developed by Xiaoming Chen.
+This project is developed by Qian Chen . Change by Yanghaoze. The used sparse linear solver is developed by Xiaoming Chen.
 
 Base :Qian Chen
 Change : Yang Hz
