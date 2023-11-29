@@ -240,11 +240,11 @@ bool cqpg_deck_parse_dc (
         dev[0] = toupper(dev[0]);
         string node1_name, node2_name;
         f64 val;
+        // 过滤小电阻
         sstr >> node1_name >> node2_name >> val;
         // if ( val <= 1e-6 && val!=0) {
         //     continue;
         // }
-        // 过滤小电阻
         node *node1 = netlist[node1_name];
         node *node2 = netlist[node2_name];
         uint8 link_ptr1 = node1->link_nums++;
@@ -684,13 +684,12 @@ bool cqpg_deck_parse (
         f64 val ;
         sstr >> node1_name >> node2_name >> val ;
         // 过滤小电阻
-        // cout << node1_name <<endl ;
-        // cout << node2_name <<endl ;
-        // cout << val << endl ;
-        // if ( val <= 1e-6 && val!=0) {
+        // if ( val < 1e-6 && val!=0) {
+        //     cout << node1_name <<endl ;
+        //     cout << node2_name <<endl ;
+        //     cout << val << endl ;
         //     continue;
         // }
-        
         if (netlist.find(node1_name) == netlist.end()) {
             node *node1 = new node();
             node1->name = node1_name;
